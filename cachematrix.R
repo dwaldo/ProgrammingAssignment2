@@ -1,28 +1,32 @@
-## Put comments here that give an overall description of what your
-## functions do
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+### Assignment #2:
+### A set of functions that enable the caching of the inverse of a 
+### matrix -- a potentially time-consuming computation. We use the 
+### scoping rules of the R language to preserve state inside of an 
+### R object.
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ### makeCacheMatrix: This function creates a special "matrix" object
 ### that can cache its inverse. It creates a special "matrix", which is
-### really a list containing a function to
-###
+### really a list containing a function to:
 ### 1.  set the value of the matrix
 ### 2.  get the value of the matrix
 ### 3.  set the value of the inverse of the matrix
 ### 4.  get the value of the inverse of the matrix
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 makeCacheMatrix <- function(x = matrix()) {
-  inv <- NULL
-  set <- function(y) {
-    x <<- y
-    inv <<- NULL
-  }
-  get <- function() x
-  setinv <- function(val) inv <<- val
-  getinv <- function() inv
-  list(set = set, get = get,
-    setinv = setinv,
-    getinv = getinv)
+        inv <- NULL
+        set <- function(y) {
+                x <<- y
+                inv <<- NULL
+        }
+        get <- function() x
+        setinv <- function(val) inv <<- val
+        getinv <- function() inv
+        list(set = set, get = get,
+                setinv = setinv,
+                getinv = getinv)
 }
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -35,13 +39,13 @@ makeCacheMatrix <- function(x = matrix()) {
 ### `setinv` function.
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 cacheSolve <- function(x, ...) {
-  inv <- x$getinv()
-  if(!is.null(inv)) {
-    message("getting cached data")
-    return(inv)
-  }
-  data <- x$get()
-  inv <- solve(data, ...)
-  x$setinv(inv)
-  inv
+        inv <- x$getinv()
+        if(!is.null(inv)) {
+                message("getting cached data")
+                return(inv)
+        }
+        data <- x$get()
+        inv <- solve(data, ...)
+        x$setinv(inv)
+        inv
 }
