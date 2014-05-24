@@ -4,6 +4,20 @@
 ### matrix -- a potentially time-consuming computation. We use the 
 ### scoping rules of the R language to preserve state inside of an 
 ### R object.
+###
+### Example Usage:
+### > c = rbind(c(1, -1/4), c(-1/4, 1))
+### > cc <- makeCacheMatrix(c)
+### > cacheSolve(cc)
+###           [,1]      [,2]
+### [1,] 1.0666667 0.2666667
+### [2,] 0.2666667 1.0666667
+### > cacheSolve(cc)
+### getting cached data
+###           [,1]      [,2]
+### [1,] 1.0666667 0.2666667
+### [2,] 0.2666667 1.0666667
+###
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
